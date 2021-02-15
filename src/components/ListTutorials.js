@@ -4,8 +4,32 @@ import ShowTutorial from '../components/ShowTutorial'
 export default function ListTutorials() {
   const [tutorials, setTutorials] = useState([])
   const [tutorial, setTutorial] = useState(null)
+  const [query, setQuery] = useState('')
   const [isLoading, setIsLoading  ] = useState(false)
   const [, setError] = useState(null)
+  const [message, setMessage] = useState('No tutorials have been posted')
+
+  function searchTutorials (event) {
+    const apiUrl = process.env.REACT_APP_API_URL
+    event.preventDefault();
+    setIsLoading(true)
+    fetch(`${apiUrl}/api/tutorials?title=${query}`)
+      .then(response => response.json())
+      .then(response => {
+        if(response.statusCode === 200) {
+          setTutorials(response.tutorials)
+          if (response.tutorials.length === 0) {
+            setMessage('No results found')
+          }
+        }
+      })
+      .catch(error=> {
+        setError(error.message)
+      })
+      .finally(() => {
+        setIsLoading(false)
+      })
+  }
 
   useEffect(() => {
     const apiUrl = process.env.REACT_APP_API_URL
@@ -31,9 +55,9 @@ export default function ListTutorials() {
   }
   return (
     <div className="container">
-      <form className="search-form">
+      <form className="search-form" onSubmit={searchTutorials}>
         <div>
-          <input id="title" type="text" />
+          <input id="title" value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Search tutorial by title" type="text" required maxLength="128" autoComplete="off" />
           <button>Search</button>
         </div>
       </form>
@@ -48,7 +72,7 @@ export default function ListTutorials() {
                   document.querySelectorAll('.active').forEach(element => element.classList.remove('active'))
                   e.target.classList.add('active')
                 }}>{tutorial.title}</li>)
-              ) : <li className="list-group-item">No tutorials have been posted</li>
+              ) : <li className="list-group-item">{message}</li>
             }
           </ul>
           <button className="bg-danger button">Remove All</button>
