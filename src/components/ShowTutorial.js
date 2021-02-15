@@ -16,9 +16,11 @@ export default function ShowTutorial({ tutorial }) {
       <p><span className="text-bold">Title:</span> {tutorial.title}</p>
       <p><span className="text-bold">Description:</span> {tutorial.description}</p>
       <p><span className="text-bold">Status:</span> {tutorial.published ? 'Published' : 'Pending'}</p>
-      <button className="button bg-warning">
-        <Link to={`/edit/${tutorial.id}`}>Edit</Link>
-      </button>
+      <Link to={`/edit/${tutorial.id}`}>
+        <button className="button bg-warning">
+          Edit
+        </button>
+      </Link>
     </div>
   )
 }
