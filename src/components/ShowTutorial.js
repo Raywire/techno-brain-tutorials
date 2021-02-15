@@ -1,15 +1,23 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
 
-export default function ShowTutorial() {
+export default function ShowTutorial({ tutorial }) {
+  if(!tutorial) {
+    return (
+      <div>
+        <h2>Tutorial</h2>
+        <p>Select a tutorial from the list</p>
+      </div>
+    )
+  }
   return (
     <div>
       <h2>Tutorial</h2>
-      <p><span className="text-bold">Title:</span> Tutorial Title</p>
-      <p><span className="text-bold">Description:</span> Tutorial Description</p>
-      <p><span className="text-bold">Status:</span> Published</p>
+      <p><span className="text-bold">Title:</span> {tutorial.title}</p>
+      <p><span className="text-bold">Description:</span> {tutorial.description}</p>
+      <p><span className="text-bold">Status:</span> {tutorial.published ? 'Published' : 'Pending'}</p>
       <button className="button bg-warning">
-        <Link to="/edit/1">Edit</Link>
+        <Link to={`/edit/${tutorial.id}`}>Edit</Link>
       </button>
     </div>
   )

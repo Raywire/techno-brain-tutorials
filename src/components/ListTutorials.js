@@ -4,6 +4,7 @@ import ShowTutorial from '../components/ShowTutorial'
 
 export default function ListTutorials() {
   const [tutorials, setTutorials] = useState([])
+  const [tutorial, setTutorial] = useState(null)
   const [isLoading, setIsLoading  ] = useState(false)
   const [, setError] = useState(null)
 
@@ -48,14 +49,18 @@ export default function ListTutorials() {
           <ul className="list-group">
             {
               tutorials.length > 0 ? (
-                tutorials.map(tutorial => <li key={tutorial.id} className="list-group-item">{tutorial.title}</li>)
+                tutorials.map(tutorial => <li key={tutorial.id} className="list-group-item" onClick={(e) => {
+                  setTutorial(tutorial)
+                  document.querySelectorAll('.active').forEach(element => element.classList.remove('active'))
+                  e.target.classList.add('active')
+                }}>{tutorial.title}</li>)
               ) : <li className="list-group-item">No tutorials have been posted</li>
             }
           </ul>
           <button className="bg-danger button">Remove All</button>
         </div>
         <div className="float-child">
-          <ShowTutorial/>
+          <ShowTutorial tutorial={tutorial}/>
         </div>
       </div>
     </div>
