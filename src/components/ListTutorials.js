@@ -1,5 +1,4 @@
 import React, { useState, useEffect} from 'react'
-import { Link } from 'react-router-dom';
 import ShowTutorial from '../components/ShowTutorial'
 
 export default function ListTutorials() {
@@ -38,11 +37,6 @@ export default function ListTutorials() {
           <button>Search</button>
         </div>
       </form>
-      <div className="mt-1 nav-link">
-        <Link to="/create">
-          Add a Tutorial
-        </Link>
-      </div>
       <div>
         <div className="float-child">
           <h2 className="title-text">Tutorials List</h2>

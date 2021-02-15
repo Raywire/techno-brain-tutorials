@@ -2,11 +2,13 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import ListTutorials from './components/ListTutorials'
 import CreateTutorial from './components/CreateTutorial'
 import EditTutorial from './components/EditTutorial'
+import Navbar from './components/Navbar'
 
 function App() {
   return (
     <BrowserRouter>
       <div className="App">
+        <Navbar />
         <Switch>
           <Route exact path='/' component={ListTutorials} />
           <Route exact path='/create' component={CreateTutorial} />
