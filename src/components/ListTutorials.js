@@ -1,8 +1,34 @@
-import React from 'react'
+import React, { useState, useEffect} from 'react'
 import { Link } from 'react-router-dom';
 import ShowTutorial from '../components/ShowTutorial'
 
 export default function ListTutorials() {
+  const [tutorials, setTutorials] = useState([])
+  const [isLoading, setIsLoading  ] = useState(false)
+  const [, setError] = useState(null)
+
+  useEffect(() => {
+    const apiUrl = process.env.REACT_APP_API_URL
+    setIsLoading(true)
+    fetch(`${apiUrl}/api/tutorials`)
+      .then(response => response.json())
+      .then(response => {
+        if(response.statusCode === 200) {
+          setTutorials(response.tutorials)
+        }
+      })
+      .catch(error=> {
+        setError(error.message)
+      })
+      .finally(() => {
+        setIsLoading(false)
+      })
+  }, [])
+  if (isLoading) {
+    return (
+      <div className="center">loading...</div>
+    )
+  }
   return (
     <div className="container">
       <form className="search-form">
@@ -20,9 +46,11 @@ export default function ListTutorials() {
         <div className="float-child">
           <h2 className="title-text">Tutorials List</h2>
           <ul className="list-group">
-            <li className="list-group-item">First item</li>
-            <li className="list-group-item">Second item</li>
-            <li className="list-group-item">Third item</li>
+            {
+              tutorials.length > 0 ? (
+                tutorials.map(tutorial => <li key={tutorial.id} className="list-group-item">{tutorial.title}</li>)
+              ) : <li className="list-group-item">No tutorials have been posted</li>
+            }
           </ul>
           <button className="bg-danger button">Remove All</button>
         </div>
