@@ -7,16 +7,79 @@ div.container {
 .text-center {
   text-align: center;
 }
+.float-left {
+  float: left;
+}
+.button {
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+}
+/* colors */
+.bg-primary {
+  color: white;
+  background-color: #4daf50
+}
+.bg-danger {
+  color: white;
+  background-color: #ff0000
+}
+.bg-success {
+  color: white;
+  background-color: #0b7dda
+}
+.bg-warning {
+  color: #000;
+  background-color: #ffbf00;
+}
+
+.float-child {
+  width: 40%;
+  float: left;
+  padding: 10px 30px 0 0;
+}
+
+/* Text */
+a {
+  text-decoration: none;
+}
 .title-text {
   font-weight: bold;
   font-size: 1.5em;
 }
+.text-bold {
+  font-weight: bold;
+}
+.text-decoration-none {
+  text-decoration: none;
+}
+
+/* Navigation links */
+.nav-link a{
+  text-decoration: none;
+  color: #0b7dda;
+}
+.nav-link a:hover{
+  text-decoration: none;
+  color: #05477e;
+}
+
 /* Margins */
 .mt-1 {
   margin-top: 1em;
 }
 .mb-1 {
   margin-bottom: 1em;
+}
+.ml-1 {
+  margin-left: 1em;
+}
+.mr-1 {
+  margin-right: 1em;
 }
 
 /* Inputs */
@@ -31,7 +94,7 @@ input[type=text], select {
 }
 
 input[type=submit] {
-  background-color: #4CAF50;
+  background-color: #4caf50;
   color: white;
   padding: 14px 20px;
   margin: 8px 0;
@@ -44,6 +107,69 @@ input[type=submit] {
 /* Add a background color to the submit button on mouse-over */
 input[type=submit]:hover {
   background-color: #45a049;
+}
+
+.list-group {
+  padding-left: 0;
+  margin-bottom: 20px;
+  border-radius: 0.5em;
+}
+.list-group-item {
+  position: relative;
+  display: block;
+  padding: 20px 15px;
+  margin-bottom: -1px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+}
+.list-group-item:first-child {
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+}
+.list-group-item:last-child {
+  margin-bottom: 0;
+  border-bottom-right-radius: 4px;
+  border-bottom-left-radius: 4px;
+}
+
+/* Search Box*/
+/* Style the search field */
+form.search-form input[type=text] {
+  padding: 10px;
+  font-size: 17px;
+  border: 1px solid grey;
+  float: left;
+  width: 75%;
+  border-radius: 0;
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+}
+
+/* Style the submit button */
+form.search-form button {
+  float: left;
+  width: 25%;
+  padding: 10px;
+  color: gray;
+  font-size: 17px;
+  border: 1px solid grey;
+  border-left: none; /* Prevent double borders */
+  cursor: pointer;
+  margin: 8px 0;
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+}
+
+form.search-form button:hover {
+  background: #0b7dda;
+  color: #fff
+}
+
+/* Clear floats */
+form.search-form::after {
+  content: "";
+  clear: both;
+  display: table;
 }
 
 @media only screen and (min-width: 600px) {
