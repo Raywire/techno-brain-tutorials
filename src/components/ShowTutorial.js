@@ -9,7 +9,7 @@ export default function ShowTutorial() {
       <p><span className="text-bold">Description:</span> Tutorial Description</p>
       <p><span className="text-bold">Status:</span> Published</p>
       <button className="button bg-warning">
-        <Link to="/edit">Edit</Link>
+        <Link to="/edit/1">Edit</Link>
       </button>
     </div>
   )
