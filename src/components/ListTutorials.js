@@ -76,27 +76,29 @@ export default function ListTutorials() {
           <button>Search</button>
         </div>
       </form>
-      <div>
-        <div className="float-child">
-          <h2 className="title-text">Tutorials List</h2>
-          <ul className="list-group">
-            {
-              tutorials.length > 0 ? (
-                tutorials.map(tutorial => <li key={tutorial.id} className="list-group-item" onClick={(e) => {
-                  setTutorial(tutorial)
-                  document.querySelectorAll('.list-active').forEach(element => element.classList.remove('list-active'))
-                  e.target.classList.add('list-active')
-                }}>{tutorial.title}</li>)
-              ) : <li className="list-group-item">{message}</li>
-            }
-          </ul>
-          {showClearButton && <button className="bg-danger button" onClick={clearSearchResults}>Remove All</button>}
+      <div className="card ph-1 mt-1 mb-1">
+        <div>
+          <div className="float-child">
+            <h2 className="title-text">Tutorials List</h2>
+            <ul className="list-group">
+              {
+                tutorials.length > 0 ? (
+                  tutorials.map(tutorial => <li key={tutorial.id} className="list-group-item" onClick={(e) => {
+                    setTutorial(tutorial)
+                    document.querySelectorAll('.list-active').forEach(element => element.classList.remove('list-active'))
+                    e.target.classList.add('list-active')
+                  }}>{tutorial.title}</li>)
+                ) : <li className="list-group-item">{message}</li>
+              }
+            </ul>
+            {showClearButton && <button className="bg-danger button" onClick={clearSearchResults}>Remove All</button>}
+          </div>
+          <div className="float-child">
+            <ShowTutorial tutorial={tutorial}/>
+          </div>
         </div>
-        <div className="float-child">
-          <ShowTutorial tutorial={tutorial}/>
-        </div>
+        <div className="clearfix mb-1"></div>
       </div>
-      <div className="clearfix mb-1"></div>
     </div>
   )
 }

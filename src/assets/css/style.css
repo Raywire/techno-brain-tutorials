@@ -2,7 +2,13 @@ div.container {
   margin: 0 auto;
   border-radius: 5px;
   background-color: #fff;
-  padding: 20px;
+  padding: 0.5em;
+}
+.card {
+  border: 1px solid #f2f2f2;
+  border-radius: 0.5em;
+  background: #fff;
+  box-shadow: 0 0 2px 0px rgba(0, 0, 0, 0.6);
 }
 .center {
   margin: 0;
@@ -78,6 +84,7 @@ a {
 .nav-link a{
   text-decoration: none;
   color: #000;
+  font-weight: bold;
 }
 .nav-link a:hover{
   color: #004FD0;
@@ -105,6 +112,9 @@ nav .active {
 /* Paddings */
 .p-1 {
   padding: 1em;
+}
+.ph-1 {
+  padding: 0 1em;
 }
 
 /* Inputs */

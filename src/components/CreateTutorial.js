@@ -37,20 +37,22 @@ export default function CreateTodo() {
 
   return (
     <div className="container fade">
-      <h2 className="title-text">Add a Tutorial</h2>
-      <form onSubmit={handleSubmit}>
-        <div className="mb-1">
-          <label htmlFor="title">Title</label>
-          <input id="title" value={title} onChange={e => setTitle(e.target.value)} type="text" required maxLength="128" autoComplete="off" />
-        </div>
-        <div className="mb-1">
-          <label htmlFor="description">Description</label>
-          <input id="description" value={description} onChange={e => setDescription(e.target.value)} type="text" required maxLength="256" autoComplete="off"/>
-        </div>
-        <div>
-          <input type="submit" value="Submit"/>
-        </div>
-      </form>
+      <div className="card p-1 mt-1">
+        <h2 className="title-text">Add a Tutorial</h2>
+        <form onSubmit={handleSubmit}>
+          <div className="mb-1">
+            <label htmlFor="title">Title</label>
+            <input id="title" value={title} onChange={e => setTitle(e.target.value)} type="text" required maxLength="128" autoComplete="off" />
+          </div>
+          <div className="mb-1">
+            <label htmlFor="description">Description</label>
+            <input id="description" value={description} onChange={e => setDescription(e.target.value)} type="text" required maxLength="256" autoComplete="off"/>
+          </div>
+          <div>
+            <input type="submit" value="Submit"/>
+          </div>
+        </form>
+      </div>
     </div>
   )
 }

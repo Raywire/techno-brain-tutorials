@@ -120,27 +120,29 @@ export default function EditTutorial() {
   }
   return (
     <div className="container fade">
-      <h2 className="title-text">Edit a Tutorial</h2>
-      <form>
-        <div className="mb-1">
-          <label htmlFor="title">Title</label>
-          <input id="title" value={title} onChange={e => setTitle(e.target.value)} type="text" required maxLength="128" autoComplete="off" />
-        </div>
-        <div className="mb-1">
-          <label htmlFor="description">Description</label>
-          <input id="description" value={description} onChange={e => setDescription(e.target.value)} type="text" required maxLength="256" autoComplete="off"/>
-        </div>
-        <div className="mb-1">
-          <p><span className="text-bold">Status:</span> {tutorial && tutorial.published ? 'Published' : 'Pending'}</p>
-        </div>
+      <div className="card p-1 mt-1">
+        <h2 className="title-text">Edit a Tutorial</h2>
+        <form>
+          <div className="mb-1">
+            <label htmlFor="title">Title</label>
+            <input id="title" value={title} onChange={e => setTitle(e.target.value)} type="text" required maxLength="128" autoComplete="off" />
+          </div>
+          <div className="mb-1">
+            <label htmlFor="description">Description</label>
+            <input id="description" value={description} onChange={e => setDescription(e.target.value)} type="text" required maxLength="256" autoComplete="off"/>
+          </div>
+          <div className="mb-1">
+            <p><span className="text-bold">Status:</span> {tutorial && tutorial.published ? 'Published' : 'Pending'}</p>
+          </div>
+          <div>
+            <button className="button bg-success mr-1 text-bold" onClick={(e) => togglePublish(e)}>{tutorial && tutorial.published ? 'Unpublish' : 'Publish'}</button>
+            <button className="button bg-danger mr-1 text-bold" onClick={(e) => deleteTutorial(e)}>Delete</button>
+            <button className="button bg-primary text-bold" onClick={(e) => updateTutorial(e)}>Update</button>
+          </div>
+        </form>
         <div>
-          <button className="button bg-success mr-1 text-bold" onClick={(e) => togglePublish(e)}>{tutorial && tutorial.published ? 'Unpublish' : 'Publish'}</button>
-          <button className="button bg-danger mr-1 text-bold" onClick={(e) => deleteTutorial(e)}>Delete</button>
-          <button className="button bg-primary text-bold" onClick={(e) => updateTutorial(e)}>Update</button>
+          <p>{message}</p>
         </div>
-      </form>
-      <div>
-        <p>{message}</p>
       </div>
     </div>
   )
