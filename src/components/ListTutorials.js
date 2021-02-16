@@ -32,6 +32,7 @@ export default function ListTutorials() {
     const apiUrl = process.env.REACT_APP_API_URL
     event.preventDefault();
     setIsLoading(true)
+    setTutorial(null)
     fetch(`${apiUrl}/api/tutorials?title=${query}`)
       .then(response => response.json())
       .then(response => {
