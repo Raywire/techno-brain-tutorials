@@ -95,6 +95,7 @@ export default function ListTutorials() {
           <ShowTutorial tutorial={tutorial}/>
         </div>
       </div>
+      <div className="clearfix mb-1"></div>
     </div>
   )
 }
