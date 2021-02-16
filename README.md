@@ -1,4 +1,5 @@
 [![Netlify Status](https://api.netlify.com/api/v1/badges/593eb1f1-6852-4c3d-b346-d89a276724c0/deploy-status)](https://app.netlify.com/sites/techno-brain-tutorials/deploys)
+![Node.js CI](https://github.com/Raywire/techno-brain-tutorials/workflows/Node.js%20CI/badge.svg)
 
 # techno-brain-tutorials-frontend
 
