@@ -1,33 +1,33 @@
 import React, { useState } from 'react'
-import { useHistory } from "react-router-dom";
+import { useHistory } from 'react-router-dom'
 import '../assets/css/style.css'
 
-export default function CreateTodo() {
+export default function CreateTodo () {
   const [title, setTitle] = useState('')
   const [description, setDescription] = useState('')
   const [, setError] = useState(null)
-  let history = useHistory();
+  const history = useHistory()
 
   function handleSubmit (event) {
-    event.preventDefault();
+    event.preventDefault()
     const apiUrl = process.env.REACT_APP_API_URL
     const tutorial = {
       title: title,
-      description: description,
-  };
-  
-  const options = {
+      description: description
+    }
+
+    const options = {
       method: 'POST',
       body: JSON.stringify(tutorial),
       headers: {
         'Content-Type': 'application/json'
       }
-  }
+    }
     fetch(`${apiUrl}/api/tutorials`, options)
       .then(response => response.json())
       .then(response => {
-        if(response.statusCode === 201) {
-          history.push('/');
+        if (response.statusCode === 201) {
+          history.push('/')
         }
       })
       .catch(error => {

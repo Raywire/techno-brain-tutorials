@@ -1,11 +1,11 @@
-import React, { useState, useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 import ShowTutorial from '../components/ShowTutorial'
 
-export default function ListTutorials() {
+export default function ListTutorials () {
   const [tutorials, setTutorials] = useState([])
   const [tutorial, setTutorial] = useState(null)
   const [query, setQuery] = useState('')
-  const [isLoading, setIsLoading  ] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
   const [, setError] = useState(null)
   const [message, setMessage] = useState('No tutorials have been posted')
   const [showClearButton, setShowClearButton] = useState(false)
@@ -16,11 +16,11 @@ export default function ListTutorials() {
     fetch(`${apiUrl}/api/tutorials`)
       .then(response => response.json())
       .then(response => {
-        if(response.statusCode === 200) {
+        if (response.statusCode === 200) {
           setTutorials(response.tutorials)
         }
       })
-      .catch(error=> {
+      .catch(error => {
         setError(error.message)
       })
       .finally(() => {
@@ -30,13 +30,13 @@ export default function ListTutorials() {
 
   function searchTutorials (event) {
     const apiUrl = process.env.REACT_APP_API_URL
-    event.preventDefault();
+    event.preventDefault()
     setIsLoading(true)
     setTutorial(null)
     fetch(`${apiUrl}/api/tutorials?title=${query}`)
       .then(response => response.json())
       .then(response => {
-        if(response.statusCode === 200) {
+        if (response.statusCode === 200) {
           setTutorials(response.tutorials)
           if (response.tutorials.length === 0) {
             setShowClearButton(false)
@@ -46,7 +46,7 @@ export default function ListTutorials() {
           }
         }
       })
-      .catch(error=> {
+      .catch(error => {
         setError(error.message)
       })
       .finally(() => {
@@ -82,13 +82,15 @@ export default function ListTutorials() {
             <h2 className="title-text">Tutorials List</h2>
             <ul className="list-group">
               {
-                tutorials.length > 0 ? (
-                  tutorials.map(tutorial => <li key={tutorial.id} className="list-group-item" onClick={(e) => {
-                    setTutorial(tutorial)
-                    document.querySelectorAll('.list-active').forEach(element => element.classList.remove('list-active'))
-                    e.target.classList.add('list-active')
-                  }}>{tutorial.title}</li>)
-                ) : <li className="list-group-item">{message}</li>
+                tutorials.length > 0
+                  ? (
+                      tutorials.map(tutorial => <li key={tutorial.id} className="list-group-item" onClick={(e) => {
+                        setTutorial(tutorial)
+                        document.querySelectorAll('.list-active').forEach(element => element.classList.remove('list-active'))
+                        e.target.classList.add('list-active')
+                      }}>{tutorial.title}</li>)
+                    )
+                  : <li className="list-group-item">{message}</li>
               }
             </ul>
             {showClearButton && <button className="bg-danger button" onClick={clearSearchResults}>Remove All</button>}

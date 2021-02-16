@@ -1,8 +1,9 @@
 import React from 'react'
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom'
+const PropTypes = require('prop-types')
 
-export default function ShowTutorial({ tutorial }) {
-  if(!tutorial) {
+export default function ShowTutorial ({ tutorial }) {
+  if (!tutorial) {
     return (
       <div>
         <h2>Tutorial</h2>
@@ -23,4 +24,8 @@ export default function ShowTutorial({ tutorial }) {
       </Link>
     </div>
   )
+}
+
+ShowTutorial.propTypes = {
+  tutorial: PropTypes.object
 }

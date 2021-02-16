@@ -1,100 +1,100 @@
 import React, { useState, useEffect } from 'react'
-import { useParams, useHistory } from "react-router-dom";
+import { useParams, useHistory } from 'react-router-dom'
 import '../assets/css/style.css'
 
-export default function EditTutorial() {
-  const [title, setTitle] = useState('');
-  const [tutorial, setTutorial] = useState(null);
-  const [description, setDescription] = useState('');
+export default function EditTutorial () {
+  const [title, setTitle] = useState('')
+  const [tutorial, setTutorial] = useState(null)
+  const [description, setDescription] = useState('')
   const [message, setMessage] = useState('')
-  const [isLoading, setIsLoading  ] = useState(false);
+  const [isLoading, setIsLoading] = useState(false)
   const [, setError] = useState(null)
-  const { id } = useParams();
-  const history = useHistory();
-  const apiUrl = process.env.REACT_APP_API_URL;
+  const { id } = useParams()
+  const history = useHistory()
+  const apiUrl = process.env.REACT_APP_API_URL
 
   function deleteTutorial (e) {
     setMessage('')
-    e.preventDefault();
-    const reply = window.confirm(`Are you sure you want to delete ${tutorial.title}?`);
+    e.preventDefault()
+    const reply = window.confirm(`Are you sure you want to delete ${tutorial.title}?`)
     if (reply === true) {
-    const options = {
+      const options = {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json'
         }
-    }
-    fetch(`${apiUrl}/api/tutorials/${id}`, options)
-      .then(response => {
-        if(response.status === 204) {
-          history.replace('/');
-        }
-      })
-      .catch(error => {
-        setError(error.message)
-      })
+      }
+      fetch(`${apiUrl}/api/tutorials/${id}`, options)
+        .then(response => {
+          if (response.status === 204) {
+            history.replace('/')
+          }
+        })
+        .catch(error => {
+          setError(error.message)
+        })
     }
   }
 
   function togglePublish (e) {
     const publishMessage = tutorial.published ? 'Unpublishing...' : 'Publishing...'
     setMessage(publishMessage)
-    e.preventDefault();
-    const published = tutorial.published ? false : true
+    e.preventDefault()
+    const published = !tutorial.published
     const tutorialObject = {
       title: title,
       description: description,
       published
-  };
-  
-  const options = {
+    }
+
+    const options = {
       method: 'PUT',
       body: JSON.stringify(tutorialObject),
       headers: {
         'Content-Type': 'application/json'
       }
-  }
-  fetch(`${apiUrl}/api/tutorials/${id}`, options)
-    .then(response => response.json())
-    .then(response => {
-      if(response.statusCode === 200) {
-        setTutorial({...tutorial, published})
-        setMessage('The tutorial was updated successfully!')
-      }
-    })
-    .catch(error => {
-      setMessage('')
-      setError(error.message)
-    })
+    }
+    fetch(`${apiUrl}/api/tutorials/${id}`, options)
+      .then(response => response.json())
+      .then(response => {
+        if (response.statusCode === 200) {
+          setTutorial({ ...tutorial, published })
+          setMessage('The tutorial was updated successfully!')
+        }
+      })
+      .catch(error => {
+        setMessage('')
+        setError(error.message)
+      })
   }
 
   function updateTutorial (e) {
     setMessage('Updating...')
-    e.preventDefault();
+    e.preventDefault()
     const tutorialObject = {
       title: title,
       description: description,
       published: tutorial.published
-  };
-  
-  const options = {
+    }
+
+    const options = {
       method: 'PUT',
       body: JSON.stringify(tutorialObject),
       headers: {
         'Content-Type': 'application/json'
       }
-  }
-  fetch(`${apiUrl}/api/tutorials/${id}`, options)
-    .then(response => response.json())
-    .then(response => {
-      if(response.statusCode === 200) {
-        setMessage('The tutorial was updated successfully!')
-      }
-    })
-    .catch(error => {
-      setMessage('')
-      setError(error.message)
-    })
+    }
+    fetch(`${apiUrl}/api/tutorials/${id}`, options)
+      .then(response => response.json())
+      .then(response => {
+        if (response.statusCode === 200) {
+          setMessage('The tutorial was updated successfully!')
+        }
+      })
+      .catch(error => {
+        setMessage('')
+        setError(error.message)
+      })
   }
 
   useEffect(() => {
@@ -102,13 +102,13 @@ export default function EditTutorial() {
     fetch(`${apiUrl}/api/tutorials/${id}`)
       .then(response => response.json())
       .then(response => {
-        if(response.statusCode === 200) {
+        if (response.statusCode === 200) {
           setTutorial(response.tutorial)
           setDescription(response.tutorial.description)
           setTitle(response.tutorial.title)
         }
       })
-      .catch(error=> {
+      .catch(error => {
         setError(error.message)
       })
       .finally(() => {

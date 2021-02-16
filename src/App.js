@@ -1,11 +1,12 @@
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import React from 'react'
+import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import ListTutorials from './components/ListTutorials'
 import CreateTutorial from './components/CreateTutorial'
 import EditTutorial from './components/EditTutorial'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 
-function App() {
+function App () {
   return (
     <BrowserRouter>
       <div className="App content">
@@ -22,7 +23,7 @@ function App() {
       </div>
       </div>
     </BrowserRouter>
-  );
+  )
 }
 
-export default App;
+export default App
