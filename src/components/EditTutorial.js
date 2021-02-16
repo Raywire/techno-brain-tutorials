@@ -37,7 +37,8 @@ export default function EditTutorial() {
   }
 
   function togglePublish (e) {
-    setMessage('')
+    const publishMessage = tutorial.published ? 'Unpublishing...' : 'Publishing...'
+    setMessage(publishMessage)
     e.preventDefault();
     const published = tutorial.published ? false : true
     const tutorialObject = {
@@ -62,12 +63,13 @@ export default function EditTutorial() {
       }
     })
     .catch(error => {
+      setMessage('')
       setError(error.message)
     })
   }
 
   function updateTutorial (e) {
-    setMessage('')
+    setMessage('Updating...')
     e.preventDefault();
     const tutorialObject = {
       title: title,
@@ -90,6 +92,7 @@ export default function EditTutorial() {
       }
     })
     .catch(error => {
+      setMessage('')
       setError(error.message)
     })
   }
