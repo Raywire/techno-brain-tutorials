@@ -36,7 +36,7 @@ export default function CreateTodo() {
   }
 
   return (
-    <div className="container">
+    <div className="container fade">
       <h2 className="title-text">Add a Tutorial</h2>
       <form onSubmit={handleSubmit}>
         <div className="mb-1">

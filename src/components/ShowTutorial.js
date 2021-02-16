@@ -11,7 +11,7 @@ export default function ShowTutorial({ tutorial }) {
     )
   }
   return (
-    <div>
+    <div className="fade fade-out">
       <h2>Tutorial</h2>
       <p><span className="text-bold">Title:</span> {tutorial.title}</p>
       <p><span className="text-bold">Description:</span> {tutorial.description}</p>

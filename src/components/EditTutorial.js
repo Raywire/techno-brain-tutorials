@@ -119,7 +119,7 @@ export default function EditTutorial() {
     )
   }
   return (
-    <div className="container">
+    <div className="container fade">
       <h2 className="title-text">Edit a Tutorial</h2>
       <form>
         <div className="mb-1">

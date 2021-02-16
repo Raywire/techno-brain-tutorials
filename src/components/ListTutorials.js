@@ -68,7 +68,7 @@ export default function ListTutorials() {
     )
   }
   return (
-    <div className="container">
+    <div className="container fade">
       <form className="search-form" onSubmit={searchTutorials}>
         <div>
           <input id="title" value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Search tutorial by title" type="text" required maxLength="128" autoComplete="off" />
