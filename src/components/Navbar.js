@@ -1,16 +1,16 @@
 import React from 'react'
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 export default function Header() {
   return (
     <div className="p-1 nav-link bg-gray-light">
       <nav>
-        <Link to="/">
+        <NavLink exact to="/">
           Tutorials
-        </Link>
-        <Link className="ml-1" to="/create">
+        </NavLink>
+        <NavLink exact className="ml-1" to="/create">
           Add a Tutorial
-        </Link>
+        </NavLink>
       </nav>
     </div>
   )

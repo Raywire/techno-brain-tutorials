@@ -83,8 +83,8 @@ export default function ListTutorials() {
               tutorials.length > 0 ? (
                 tutorials.map(tutorial => <li key={tutorial.id} className="list-group-item" onClick={(e) => {
                   setTutorial(tutorial)
-                  document.querySelectorAll('.active').forEach(element => element.classList.remove('active'))
-                  e.target.classList.add('active')
+                  document.querySelectorAll('.list-active').forEach(element => element.classList.remove('list-active'))
+                  e.target.classList.add('list-active')
                 }}>{tutorial.title}</li>)
               ) : <li className="list-group-item">{message}</li>
             }
