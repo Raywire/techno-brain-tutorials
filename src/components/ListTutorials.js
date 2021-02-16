@@ -8,30 +8,9 @@ export default function ListTutorials() {
   const [isLoading, setIsLoading  ] = useState(false)
   const [, setError] = useState(null)
   const [message, setMessage] = useState('No tutorials have been posted')
+  const [showClearButton, setShowClearButton] = useState(false)
 
-  function searchTutorials (event) {
-    const apiUrl = process.env.REACT_APP_API_URL
-    event.preventDefault();
-    setIsLoading(true)
-    fetch(`${apiUrl}/api/tutorials?title=${query}`)
-      .then(response => response.json())
-      .then(response => {
-        if(response.statusCode === 200) {
-          setTutorials(response.tutorials)
-          if (response.tutorials.length === 0) {
-            setMessage('No results found')
-          }
-        }
-      })
-      .catch(error=> {
-        setError(error.message)
-      })
-      .finally(() => {
-        setIsLoading(false)
-      })
-  }
-
-  useEffect(() => {
+  function fetchTutorials () {
     const apiUrl = process.env.REACT_APP_API_URL
     setIsLoading(true)
     fetch(`${apiUrl}/api/tutorials`)
@@ -47,6 +26,41 @@ export default function ListTutorials() {
       .finally(() => {
         setIsLoading(false)
       })
+  }
+
+  function searchTutorials (event) {
+    const apiUrl = process.env.REACT_APP_API_URL
+    event.preventDefault();
+    setIsLoading(true)
+    fetch(`${apiUrl}/api/tutorials?title=${query}`)
+      .then(response => response.json())
+      .then(response => {
+        if(response.statusCode === 200) {
+          setTutorials(response.tutorials)
+          if (response.tutorials.length === 0) {
+            setShowClearButton(false)
+            setMessage('No results found')
+          } else {
+            setShowClearButton(true)
+          }
+        }
+      })
+      .catch(error=> {
+        setError(error.message)
+      })
+      .finally(() => {
+        setIsLoading(false)
+      })
+  }
+
+  function clearSearchResults () {
+    setShowClearButton(false)
+    setQuery('')
+    fetchTutorials()
+  }
+
+  useEffect(() => {
+    fetchTutorials()
   }, [])
   if (isLoading) {
     return (
@@ -75,7 +89,7 @@ export default function ListTutorials() {
               ) : <li className="list-group-item">{message}</li>
             }
           </ul>
-          <button className="bg-danger button">Remove All</button>
+          {showClearButton && <button className="bg-danger button" onClick={clearSearchResults}>Remove All</button>}
         </div>
         <div className="float-child">
           <ShowTutorial tutorial={tutorial}/>
